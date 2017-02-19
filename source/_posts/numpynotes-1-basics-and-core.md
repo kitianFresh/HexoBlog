@@ -1,5 +1,5 @@
 ---
-title: Numpy 入门及核心指南
+title: Numpy介绍(part1)-入门及核心指南
 
 categories:
 - Python
@@ -13,7 +13,8 @@ summary:
 ---
 $$ x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 
-# numpy array creation
+
+# Numpy array creation
 ## 创建均匀分布的值
 ### arange
  * arange([start,] stop[, step,], dtype=None)：生成一个线性增长的某一范围内的数组，和Python中的 range 类似，但是arange支持浮点参数
@@ -35,9 +36,6 @@ list(x)
     []
     [  0.   1.   2.   3.   4.   5.   6.   7.   8.   9.  10.]
     xrange(10)
-
-
-
 
 
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -170,9 +168,12 @@ print(np.shape(x))
 
 
 二维数组的轴，你可以理解为二维平面坐标轴，axis=0 表示当沿着y方向，axis=1 表示沿着x方向
-![axis1](./numpynotes/axis1.jpeg)
+
+![axis1](./numpynotes-1-basics-and-core/axis1.jpeg)
 三维数组的轴，可以理解为三维空间坐标轴，axis=0 表示当沿着y方向，axis=1 表示沿着x方向，axis=2 表示沿着z方向
-![axis](./numpynotes/axis.jpeg)
+
+![axis](./numpynotes-1-basics-and-core/axis.jpeg)
+
 **高维空间是无法映射到物理空间的，因此也不能画出图像来，但是还是一样，每一个维度对应一个轴，沿着某一个轴，剩下的维度构成一个超空间。**对于2维，沿着x轴，剩下的y维度构成一个直线向下平移；
 
 >多维数组维度的理解，这里如何看出Q是三维且shape为(2,3,3)呢？
@@ -202,9 +203,6 @@ l = [
 ]
 my_shape(l)
 ```
-
-
-
 
     [2, 3, 3]
 
@@ -418,7 +416,8 @@ X[(0,1,2),(4,5,6)]
 
 切片和 Python list tuple 也类似，但是有一点不同：** Python list 和 tuple 中切片会创建一个新的对象，改变这个对象不影响原来的 list，但是 numpy 中的 ndarray，切片创建的是原来 ndarray 的视图，修改后会改变原始 ndarray；**
  - X[start:stop:step], [start, stop)左闭右开
-![slicing](./numpynotes/slicing.png)
+
+![slicing](./numpynotes-1-basics-and-core/slicing.png)
 
 
 ```python
@@ -462,9 +461,6 @@ print view
 np.may_share_memory(X, view)
 ```
 
-
-
-
     True
 
 
@@ -485,8 +481,8 @@ print B
 #print (view.data) #AttributeError: cannot get single-segment buffer for discontiguous array
 ```
 
-    <read-write buffer for 0x7f28c80b4260, size 96, offset 0 at 0x7f28c80aee70>
-    <read-write buffer for 0x7f28c80b4530, size 96, offset 0 at 0x7f28c80ae770>
+    <read-write buffer for 0x7f7589c067b0, size 96, offset 0 at 0x7f7589c79830>
+    <read-write buffer for 0x7f7589c24c60, size 96, offset 0 at 0x7f7589c793f0>
     True
     True
     [  0   1   2   3   4   5   6 777   8   9  10  11]
@@ -532,7 +528,7 @@ print copy
      [ 1.  1.  1.]]
 
 
-# numpy data type
+# Numpy data type
 ## dtype
 >假如要使用numpy装入一个二维的下列表格，表中的每一列数据类型都不一样，如何做呢？
 
@@ -657,7 +653,7 @@ print(times['temperature'])
  - **确定一个表的最终类型时，可以看每一列是什么数据类型，然后每一列是一个二元tuple，即(fieldname, datatype),然后组合np.dtype([(f1,d1),(f2,d2),...(fn,dn)]);**
  - **分解子datatype，如果dn不是基本datatype，则可以继续分解递归定义；**
 
-# numpy_numerical_operations_on_numpy_arrays
+# Numpy numerical operations
 ## Arithmetic Operations with two Arrays
 对应位置元素 做某种操作运算
 
@@ -888,10 +884,6 @@ B
 
     (3, 3)
 
-
-
-
-
     array([[1, 2, 3],
            [1, 2, 3],
            [1, 2, 3]])
@@ -1005,7 +997,7 @@ A * B[:, np.newaxis]
 
     ValueError                                Traceback (most recent call last)
 
-    <ipython-input-29-d31486c531b6> in <module>()
+    <ipython-input-192-d31486c531b6> in <module>()
           6 print repr(B1)
           7 B1[0] = 1
     ----> 8 A * B[:, np.newaxis]
@@ -1014,7 +1006,7 @@ A * B[:, np.newaxis]
     ValueError: operands could not be broadcast together with shapes (4,3) (3,1) 
 
 
-![broadcasting_example_1](./numpynotes/broadcasting_example_1.png)
+![broadcasting_example_1](./numpynotes-1-basics-and-core/broadcasting_example_1.png)
 
 
 ```python
@@ -1024,7 +1016,15 @@ print repr(A[:, np.newaxis])
 print repr(A[:, np.newaxis] * B)
 ```
 
-![broadcasting_example_2](./numpynotes/broadcasting_example_2.png)
+    array([[10],
+           [20],
+           [30]])
+    array([[10, 20, 30],
+           [20, 40, 60],
+           [30, 60, 90]])
+
+
+![broadcasting_example_2](./numpynotes-1-basics-and-core/broadcasting_example_2.png)
 
 以下是实现以上操作的另外两种实现，显式的使用了 concatenate 和 tile 方法升维；
 
@@ -1048,6 +1048,27 @@ print("... and now addition again: ")
 print(A + B)
 ```
 
+    Multiplication: 
+    [[11 24 39]
+     [21 44 69]
+     [31 64 99]]
+    ... and now addition again: 
+    [[12 14 16]
+     [22 24 26]
+     [32 34 36]]
+    [[1 2 3]
+     [1 2 3]
+     [1 2 3]]
+    Multiplication: 
+    [[11 24 39]
+     [21 44 69]
+     [31 64 99]]
+    ... and now addition again: 
+    [[12 14 16]
+     [22 24 26]
+     [32 34 36]]
+
+
 ### 三维空间broadcasting
 
 
@@ -1068,6 +1089,27 @@ print(B.shape)
 print(B)
 print(A * B)
 ```
+
+    (1, 3)
+    (3, 3)
+    (3, 1, 3)
+    [[[1 1 1]]
+    
+     [[2 2 2]]
+    
+     [[3 3 3]]]
+    [[[ 3  4  7]
+      [ 5  0 -1]
+      [ 2  1  5]]
+    
+     [[ 2  0 -2]
+      [16  4  8]
+      [10  4  2]]
+    
+     [[ 6  3  9]
+      [ 3 27 12]
+      [15 -6 12]]]
+
 
 小结：
 >Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python. It does this without making needless copies of data and usually leads to efficient algorithm implementations. There are, however, cases where broadcasting is a bad idea because it leads to inefficient use of memory that slows computation.
@@ -1339,13 +1381,7 @@ np.shape(A)
      [4 9]
      [5 0]]
 
-
-
-
-
     (3,)
-
-
 
 
 ```python
@@ -1395,376 +1431,3 @@ print(np.tile(x, 2))
      [3 4 3 4 3 4 3 4]]
     [[1 2 1 2]
      [3 4 3 4]]
-
-
-# Numpy Statistics & Probability
-## Random Numbers with Python
-Python 中自带有产生随机数的库 random，但是 random 里面有两种随机数产生方法，一种是伪随机的random类，另一种借助操作系统的随机产生安全的随机数SystemRandom类；
-
- - random() returns a float between 0 and 1 uniformly at random
- - randint(a,b) returns a random integer between a and b inclusive
- - choice(li) samples a random element from li
- - sample(li) returns a randomly selected subset of li
- - shuffle(li) randomly permutes the list li
- - uniform(a, b) returns a float uniformly distributed between a and b
-### random伪随机
-
-
-```python
-from random import random
-random_number = random()
-print random_number
-```
-
-    0.901944603967
-
-
-### SystemRandom随机
-
-
-```python
-from random import SystemRandom
-crypto = SystemRandom()
-print(crypto.random())
-```
-
-    0.558071139981
-
-
-
-```python
-import random
-def my_random_list(n, secure=True):
-    random_lists = []
-    if secure:
-        random_generator = random.SystemRandom().random
-    else:
-        random_generator = random.random
-    for _ in range(n):
-        random_lists.append(random_generator())
-    return random_lists
-print my_random_list(5)
-```
-
-    [0.9298067200249304, 0.3710398365288665, 0.3917625803836826, 0.333002534342388, 0.638775944400734]
-
-
-
-```python
-%%timeit
-my_random_list(100)
-```
-
-    1000 loops, best of 3: 207 µs per loop
-
-
-
-```python
-%%timeit
-my_random_list(100,False)
-```
-
-    100000 loops, best of 3: 9.66 µs per loop
-
-
-
-```python
-import numpy as np
-np.random.random(10)
-```
-
-
-
-
-    array([ 0.46138997,  0.65013301,  0.92058415,  0.44339562,  0.36134204,
-            0.4898129 ,  0.9811661 ,  0.86577081,  0.04052645,  0.80392747])
-
-
-
-
-```python
-%%timeit
-np.random.random(100)
-```
-
-    The slowest run took 10.70 times longer than the fastest. This could mean that an intermediate result is being cached.
-    1000000 loops, best of 3: 1.87 µs per loop
-
-
-### 产生符合概率分布和为1的随机数
-
-
-```python
-import numpy as np
-random_values = np.random.random(10)
-print random_values
-probable_random_values = random_values / random_values.sum()
-print probable_random_values
-print probable_random_values.sum()
-```
-
-    [ 0.29769689  0.21598279  0.85515571  0.16237275  0.40453617  0.01368639
-      0.77731975  0.47420976  0.64413942  0.9130832 ]
-    [ 0.06256525  0.04539186  0.17972317  0.03412495  0.08501905  0.00287639
-      0.16336483  0.09966195  0.13537509  0.19189746]
-    1.0
-
-
-### 产生随机密码
-
-
-```python
-from random import SystemRandom
-sr = SystemRandom() # create an instance of the SystemRandom class
-    
-def generate_password(length, 
-                      valid_chars=None):
-    """ generate_password(length, check_char) -> password
-        length: the length of the created password
-        check_char: a Boolean function used to check the validity of a char
-    """
-    if valid_chars==None:
-        valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        valid_chars += valid_chars.lower() + "0123456789"
-    
-    password = ""
-    counter = 0
-    while counter < length:
-        rnum = sr.randint(0, 128)
-        char = chr(rnum)
-        if char in valid_chars:
-            password += chr(rnum)
-            counter += 1
-    return password
-print("Automatically generated password by Python: " + generate_password(15))
-```
-
-    Automatically generated password by Python: xZl3W6RDnq5oFbK
-
-
-## Numpy random 和 Python random 的区别
-
-
-```python
-import random
-outcome = [ random.randint(1, 6) for _ in range(10) ]
-print(outcome)
-```
-
-    [5, 6, 5, 5, 6, 6, 1, 1, 5, 6]
-
-
-
-```python
-import numpy as np
-outcome = np.random.randint(1, 7, size=10)
-print(outcome)
-print(np.random.randint(1, 7, size=(5, 4)))
-```
-
-    [5 6 5 6 2 6 5 6 4 1]
-    [[3 2 3 3]
-     [1 3 1 1]
-     [5 2 5 2]
-     [6 6 3 1]
-     [5 5 4 6]]
-
-
-**Python random其实是闭区间，numpy random是半开半闭区间；numpy random 可以产生维度**
-
-## Random Choices
-core Python 中我们还可以用 choice 从一个 list 或 tuple 中随机选择某个元素，Numpy choice 提供更强大灵活的 多维度 随机选择；
-
-
-```python
-from random import choice
-programming_languages = ["C++", "Java", "Python", 
-                        "Golang", "Javascript", "C",
-                        "Ruby", "Pearl", "Scala", 
-                        "Lisp", "Html", "CSS"]
-print (choice(programming_languages))
-```
-
-    Lisp
-
-
-
-```python
-from numpy.random import choice
-print(choice(programming_languages))
-
-x1 = choice(programming_languages, size=3)
-print(x1)
-x2 = choice(programming_languages, size=(3, 4))
-print(x2)
-
-print(choice(programming_languages, size=(3, 4), replace=False))
-```
-
-    Ruby
-    ['Html' 'Scala' 'Javascript']
-    [['Ruby' 'Pearl' 'Ruby' 'Python']
-     ['Scala' 'Html' 'Scala' 'Golang']
-     ['CSS' 'Pearl' 'Javascript' 'C++']]
-    [['Ruby' 'CSS' 'Scala' 'Lisp']
-     ['Javascript' 'Pearl' 'Html' 'C']
-     ['Golang' 'Java' 'Python' 'C++']]
-
-
-## Random Samples
-### numpy.random.random_sample(shape)
- - 产生[0.0, 1.0)之间的连续均匀分布的随机数; 只有一个形状参数；
- - 产生[a, b)之间的数，使用公式 (b - a) * random_sample() + a;
-
-
-```python
-import numpy as np
-x = np.random.random_sample((3, 4))
-print(x)
-a = -3.4
-b = 5.9
-A = (b - a) * np.random.random_sample((3, 4)) + a
-print(A)
-```
-
-    [[ 0.13483795  0.35900322  0.09327582  0.94346767]
-     [ 0.81952298  0.79084139  0.97427507  0.0710931 ]
-     [ 0.92548797  0.27872483  0.00545007  0.44457017]]
-    [[ 0.41358355  4.13177096  0.79890856  4.23177401]
-     [-0.14316742 -2.8954111   2.52430474  4.27517604]
-     [ 2.98557184 -0.42926046  5.71080921 -3.17054738]]
-
-
-### Core Python sample
-sample(population, k)
- - 产生 k 个范围在 population 的随机数；
-
-
-```python
-import random
-print(random.sample(range(1, 50), 6))
-```
-
-    [8, 28, 45, 36, 12, 26]
-
-
-# Weighted choice & sample
-- [Monty_Hall_problem](https://en.wikipedia.org/wiki/Monty_Hall_problem)
-- [MontyFinal2.pdf](http://educ.jmu.edu/~lucassk/Papers/MontyFinal2.pdf)
-- [montyfall.pdf](http://www.probability.ca/jeff/writing/montyfall.pdf)
-
-## Weighted Random Choices
-### 找到 x 所在的区间
-
-
-```python
-def find_interval(x, partition):
-    '''
-    返回x所在区间的左边界索引；
-    如果 partition[i] < x < partition[i+1]， 则返回 i; 否则返回 -1；
-    '''
-    for i in range(0, len(partition)):
-        if x < partition[i]:
-            return i - 1
-    return -1
-
-I = [0, 3, 5, 7.8, 9, 12, 13.8, 16]
-for x in [-1.3, 0, 0.1, 3.2, 5, 6.2, 7.9, 10.8, 13.9, 15, 16, 16.5]:
-    print find_interval(x, I),
-```
-
-    -1 0 0 1 2 2 3 4 6 6 -1 -1
-
-
-### 累计概率和
-
-
-```python
-import numpy as np
-weights = [0.2, 0.5, 0.3]
-cum_weights = [0] + list(np.cumsum(weights))
-print(cum_weights)
-```
-
-    [0, 0.20000000000000001, 0.69999999999999996, 1.0]
-
-
->如何才能以某一种固定的概率随机取数呢？例如，我要随机的从 [1,2,3] 取数，但是要求是按照 [0.2, 0.5, 0.3] 的概率取出来，即最终表现应该是取出来的数， 1 占 20%， 2 占 50%， 3 占 30%；
-
-**从均匀分布random中产生非均匀分布，就是以非均匀的概率为区间，做随机取数实验，random 产生的随机数会落到相应的区间，而每个区间对应一个相应概率的随机数字**
-
-
-```python
-import numpy as np
-import random
-def weighted_choice(sequence, 
-                    weights,
-                    secure=True):
-    """ 
-    weighted_choice selects a random element of 
-    the sequence according to the list of weights
-    """
-    
-    if secure:
-        crypto = random.SystemRandom()
-        x = crypto.random()
-    else:
-        x = np.random.random()
-    cum_weights = [0] + list(np.cumsum(weights))
-    index = find_interval(x, cum_weights)
-    return sequence[index]
-```
-
-
-```python
-from collections import Counter
-faces_of_die = [1, 2, 3, 4, 5, 6]
-weights = [1.0/12, 1.0/6, 1.0/6, 1.0/6, 1.0/6, 3.0/12]
-outcomes = []
-n = 100000
-for _ in range(n):
-    outcomes.append(weighted_choice(faces_of_die, weights))
-c = Counter(outcomes)
-for key in c:
-    c[key] = c[key] * 1.0 / n
-    
-print(sorted(c.values()))
-```
-
-    [0.08153, 0.16536, 0.16666, 0.16723, 0.16729, 0.25193]
-
-
-## Weighted Random Choice with Numpy
-
-
-```python
-from numpy.random import choice
-professions = ["scientist", 
-               "philosopher", 
-               "engineer", 
-               "priest", 
-               "programmer"]
-probabilities = [0.2, 0.05, 0.3, 0.15, 0.3]
-choice(professions, p=probabilities)
-
-from collections import Counter
-c = Counter()
-for _ in range(1000):
-    profession = choice(professions, p=probabilities)
-    c[profession] += 1
-    
-print(c)
-s = sum(c.values())
-for el in c:
-    c[el] /= s * 1.0
-print(c)
-```
-
-    Counter({'engineer': 300, 'programmer': 298, 'scientist': 196, 'priest': 157, 'philosopher': 49})
-    Counter({'engineer': 0.3, 'programmer': 0.298, 'scientist': 0.196, 'priest': 0.157, 'philosopher': 0.049})
-
-
-
-```python
-
-```
