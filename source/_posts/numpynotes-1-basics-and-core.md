@@ -11,8 +11,6 @@ tags:
 summary: 
 - 介绍总结Numpy的核心及常用知识点
 ---
-$$ x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
-
 
 # Numpy array creation
 ## 创建均匀分布的值
@@ -354,13 +352,13 @@ print "axis=3\n", repr(np.sum(D, axis=3))
 定位到第二个`[`,内部两个元素，因为该维度长度2，
 \begin{equation}
  \begin{bmatrix}
-   1  &  2  &  3 \\
-   4  &  5  &  6 \\
+   1  &  2  &  3 \\\\
+   4  &  5  &  6 \\\\
    7  &  8  &  9
  \end{bmatrix},
  \begin{bmatrix}
-   10 & 11 & 12 \\
-   13 & 14 & 15 \\
+   10 & 11 & 12 \\\\
+   13 & 14 & 15 \\\\
    16 & 17 & 18
  \end{bmatrix}
 \end{equation}
@@ -368,18 +366,18 @@ print "axis=3\n", repr(np.sum(D, axis=3))
 将该维度降维，即
 \begin{equation}
  \begin{bmatrix}
-   1 & 2 & 3 \\
-   4 & 5 & 6 \\
+   1 & 2 & 3 \\\\
+   4 & 5 & 6 \\\\
    7 & 8 & 9
   \end{bmatrix}+
  \begin{bmatrix}
-   10 & 11 & 12 \\
-   13 & 14 & 15 \\
+   10 & 11 & 12 \\\\
+   13 & 14 & 15 \\\\
    16 & 17 & 18
   \end{bmatrix}=
  \begin{bmatrix}
-   11 & 13 & 15 \\
-   17 & 19 & 21 \\
+   11 & 13 & 15 \\\\
+   17 & 19 & 21 \\\\
    23 & 25 & 27
   \end{bmatrix}
 \end{equation}
@@ -773,18 +771,16 @@ print(R)
 
 以 R[0] 为例，它是 R 的 axis = 0 维度的第一个元素， 那么该元素列表应该是由剩余的维度做 sum product得到；
 
-\begin{equation*}
+\begin{equation}
  \begin{bmatrix}
    3 & 1 & 2
- \end{bmatrix}
+ \end{bmatrix}*
  \begin{bmatrix}
-  2 \\
-  2 \\
+  2 \\\\
+  2 \\\\
   3
- \end{bmatrix}
- =
- 14
-\end{equation*}
+ \end{bmatrix}=14
+\end{equation}
 
 
 ```python

@@ -258,7 +258,7 @@ highlight_theme: normal
 # MathJax Support
 mathjax:
   enable: true
-  per_page: true
+  # per_page: true
   cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 
