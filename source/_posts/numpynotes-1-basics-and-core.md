@@ -167,11 +167,10 @@ print(np.shape(x))
 
 二维数组的轴，你可以理解为二维平面坐标轴，axis=0 表示当沿着y方向，axis=1 表示沿着x方向
 
-![axis1](./numpynotes-1-basics-and-core/axis1.jpeg)
+{% asset_img axis1.jpeg axis1 %}
 三维数组的轴，可以理解为三维空间坐标轴，axis=0 表示当沿着y方向，axis=1 表示沿着x方向，axis=2 表示沿着z方向
 
-![axis](./numpynotes-1-basics-and-core/axis.jpeg)
-
+{% asset_img axis.jpeg axis%}
 **高维空间是无法映射到物理空间的，因此也不能画出图像来，但是还是一样，每一个维度对应一个轴，沿着某一个轴，剩下的维度构成一个超空间。**对于2维，沿着x轴，剩下的y维度构成一个直线向下平移；
 
 >多维数组维度的理解，这里如何看出Q是三维且shape为(2,3,3)呢？
@@ -415,8 +414,7 @@ X[(0,1,2),(4,5,6)]
 切片和 Python list tuple 也类似，但是有一点不同：** Python list 和 tuple 中切片会创建一个新的对象，改变这个对象不影响原来的 list，但是 numpy 中的 ndarray，切片创建的是原来 ndarray 的视图，修改后会改变原始 ndarray；**
  - X[start:stop:step], [start, stop)左闭右开
 
-![slicing](./numpynotes-1-basics-and-core/slicing.png)
-
+{% asset_img slicing.png slicing%}
 
 ```python
 X = np.arange(28)
@@ -1002,8 +1000,7 @@ A * B[:, np.newaxis]
     ValueError: operands could not be broadcast together with shapes (4,3) (3,1) 
 
 
-![broadcasting_example_1](./numpynotes-1-basics-and-core/broadcasting_example_1.png)
-
+{% asset_img broadcasting_example_1.png broadcasting_example_1 %}
 
 ```python
 A = np.array([10, 20, 30])
@@ -1020,7 +1017,7 @@ print repr(A[:, np.newaxis] * B)
            [30, 60, 90]])
 
 
-![broadcasting_example_2](./numpynotes-1-basics-and-core/broadcasting_example_2.png)
+{% asset_img broadcasting_example_2.png broadcasting_example_2 %}
 
 以下是实现以上操作的另外两种实现，显式的使用了 concatenate 和 tile 方法升维；
 
