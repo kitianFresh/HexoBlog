@@ -1,6 +1,8 @@
 ---
 title:
   LeetCode 系列之链表
+date:
+  2017-03-09
 categories:
 - DataStructure & Algorithm 
 tags:

@@ -1,6 +1,9 @@
 ---
-title: Numpy介绍(part1)-入门及核心指南
+title:
+  Numpy介绍(part1)-入门及核心指南
 
+date:
+  2017-02-11
 categories:
 - Python
 - DataScience

@@ -1,5 +1,8 @@
 ---
-title: 函数式编程 functional programming
+title:
+  函数式编程 functional programming
+date:
+  2017-02-06
 categories: 
 - Python
 - FunctionalProgramming
