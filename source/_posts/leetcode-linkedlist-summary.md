@@ -18,7 +18,7 @@ tags:
 
 **链表在空间组织上是离散在内存之中**，而**数组是连续存在于内存之中**，因此**链表对内存的利用率较高，而且不会很苛刻，只要有足够一个节点的空间，就可以增加元素**，但是**数组对内存的要求比较苛刻，内存紧张的时候数组就会由于找不到连续内存而无法继续存储。**
 
-当然数组的好处也是有的，现代CPU对于内存中连续块可以进行cache,从而使得数组的处理在硬件上更加快速！因此对于内存不紧张的场景，开辟连续数组显然能够更大程度的利用 CPU 缓存体系.
+当然数组的好处也是有的，现代CPU对于内存中连续块可以进行cache,从而使得数组的处理在硬件上更加快速！因此对于内存不紧张的场景，开辟连续数组显然能够更大程度的利用 CPU 缓存体系。
 
 数组和链表都可以采用动态申请和静态申明的方式申请空间。你会惊讶链表也可以通过静态申明组织起来吗？
  - 数组的动态申请和静态申明：
@@ -89,7 +89,7 @@ static tDataNode head[] =
 
 **静态和动态的唯一区别就是在于编译器和操作系统，静态其实就是编译器提前申请了内存，即在编译时期就确定了这些数据需要压栈，因为长度类型都是已知的，而动态就是编译时期无法确定大小，只有程序在执行的时候才会决定到底需不需要这块内存，此时由操作系统帮助完成堆内存的申请，产生系统调用的巨大开销！**
 
-链表也分很多中，根据方向有单向链表，双向链表，根据首尾是否连接有循环链表，不循环链表，组合在一起，就有**单向不循环，单向循环，双向不循环，双向循环**四种。
+链表也分很多种，根据方向有单向链表，双向链表，根据首尾是否连接有循环链表，不循环链表，组合在一起，就有**单向不循环，单向循环，双向不循环，双向循环**四种。
 
 以下只讨论 单向不循环链表。采用Java语言编写代码，由于Java具有GC，因此删除操作不用显式的释放内存，所以和C/C++写法会不一样，不会出现一个temp变量保存做free操作。
 
@@ -448,46 +448,37 @@ static tDataNode head[] =
 ```
 
 ### 合并K个有序链表--联想到归并排序，分治法
-第一个版本是**递归版本**，即**基于归并排序算法的分治思想**，合并多个 已排序的链表，可以**将该问题分为两个子问题，即现将这些链表分为两部分 left 和 right，如果 left 和 right 已经合并完成并返回  l1 和 l2，那么最后将 l1 和 l2 进行两个有序链表的合并即可！**
+第一个版本是**递归版本**，即**基于归并排序算法的分治思想**，合并多个 已排序的链表，可以**将该问题分为两个子问题，即先将这些链表分为两部分 left 和 right，如果 left 和 right 已经合并完成并返回  l1 和 l2，那么最后将 l1 和 l2 进行两个有序链表的合并即可,当子问题只有一个链表时候，直接返回！**
 ```java
-	public ListNode mergeKLists(ListNode[] lists) {
-		if (lists == null) return null;
-		if (lists.length == 1) return lists[0];
-		if (lists.length == 2) {
-			return mergeTwoLists(lists[0], lists[1]);
-		}
-		int len = lists.length;
-		ListNode[] left = new ListNode[len/2];
-		ListNode[] right = new ListNode[len/2 + len%2];
-		int i,j;
-		for (i=0; i<left.length; i++) {
-			left[i] = lists[i];
-		}
-		for (j=0; j<right.length; j++) {
-			right[j] = lists[j+left.length];
-		}
-		
-		ListNode l1 = mergeKLists(left);
-		ListNode l2 = mergeKLists(right);
-		
-		return mergeTwoLists(l1, l2);
+	
+    public ListNode merge(ListNode l1, ListNode l2) {
+        if (l1 == null || l2 == null) return l1==null?l2:l1;
         
+        if (l1.val < l2.val) {
+            l1.next = merge(l1.next, l2);
+            return l1;
+        }
+        else {
+            l2.next = merge(l1, l2.next);
+            return l2;
+        }
     }
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if(l1 == null) return l2;
-		if(l2 == null) return l1;
-		if(l1.val < l2.val){
-			l1.next = mergeTwoLists(l1.next, l2);
-			return l1;
-		} else{
-			l2.next = mergeTwoLists(l1, l2.next);
-			return l2;
-		}
+    public ListNode dc(ListNode[] lists, int left, int right) {
+        if (lists == null || lists.length < 1) return null;
+        if (left == right) return lists[left];
+        int mid = (left + right)/2;
+        ListNode l = dc(lists, left, mid);
+        ListNode r = dc(lists, mid+1, right);
+        return merge(l, r);
+    }
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length < 1) return null;
+        return dc(lists, 0, lists.length-1);
     }
 ```
-由于每一次递归的每一层都需要复制数组，而递归层数是 logK，数组长度 K，空间复杂度是 O(K\*logK); 时间复杂度 O(nlgn)
+假设链表的平均长度是 n,有T(k) = 2\*T(k/2) + O(nk),这个递推公式可以直接算，T(k) = 2\*[2\*T(k/2^2)+nk/2] = 2^2T(k/2^2) + 2nk = ... = 2^xT(1) + xnk; 其中 2^x = k, x = lgk, T(1) = 1, 解得 T(k) = k + nklgk; 也可以使用Master主定理，时间复杂度 O(nklgk).
 
-以上版本是递归，如果写成非递归的形式，可以采用优先队列，即**每次从待排序链表中取出最小的节点，每取出来一个，就加入到合并后的链表中，然后将该节点所在链表移动一个位置，每次取K个链表头节点的最小值**,可以使用**优先队列**。优先队列的空间始终不大于 K，因为每放入一次就取出来一个，初始化时将 K 个链表的头结点分别放入即可；即空间复杂度是 O(K)， 而时间复杂度是 O(S\*logK) ; S 是链表的总元素个数；
+以上版本是递归，如果写成非递归的形式，可以采用优先队列，即**每次从待排序链表中取出最小的节点，每取出来一个，就加入到合并后的链表中，然后将该节点所在链表移动一个位置，每次取 k 个链表头节点的最小值**,可以使用**优先队列**。优先队列的空间始终不大于 k，因为每放入一次就取出来一个，初始化时将 k 个链表的头结点分别放入即可；假设 k 个链表的平均长度是n，那么空间复杂度是 O(k)， 时间复杂度，由于优先队列的内部实现是堆，每次更新都是lgk 的时间复杂度，总共有 nk个节点，即更新 nk 次，得到 时间复杂度O(nklgk)
 ```java
 	public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) return null;
