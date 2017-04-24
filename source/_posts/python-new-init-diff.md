@@ -2,7 +2,7 @@
 title:
   Python __new__ 和 __init__
 date:
-  2017-04-011
+  2017-04-11
 categories:
 - python
 tags:
