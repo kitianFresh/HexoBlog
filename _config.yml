@@ -75,3 +75,11 @@ deploy:
 # author avatar
 # avatar: http://www.gravatar.com/avatar/eca5904ab37d41efba131ed97933cde0?s=256&d=identicon&r=x
 avatar: /images/avatar.png
+
+
+algolia:
+  applicationID: 'MYQZ4L4RHN'
+  apiKey: '6c44fdb6e1e6fef41689fb14619b8ab2'
+  adminApiKey: '4e4ca1a90db9ad3f6ae3f3ba6fd818be'
+  indexName: 'MetaHacksBlog'
+  chunkSize: 5000
