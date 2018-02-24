@@ -136,6 +136,8 @@ social:
   GitHub: https://github.com/kitianFresh
   Weibo: http://weibo.com/3971220798/profile
   Zhihu: https://www.zhihu.com/people/tian-qi-89-36
+  Wiki: http://wiki.hacksmeta.com/
+  CSDN: http://blog.csdn.net/u014659656
 
 
 # Social Links Icons
@@ -223,12 +225,14 @@ post_meta:
 
 
 # Wechat Subscriber
-wechat_subscriber:
-  enabled: true
-  qcode: /images/qrcode_for_metahacks.jpg
-  description: 扫描二维码，关注我 ^_^
+# wechat_subscriber:
+#   enabled: true
+#   qcode: /images/qrcode_for_metahacks.jpg
+#   description: 扫描二维码，关注我 ^_^
 
-
+reward_comment: 如果你觉得这篇文章对你有帮助,不妨请我喝杯咖啡,鼓励我创作更多
+wechatpay: /images/WeChatPay.jpg
+alipay: /images/AliPay.jpeg
 
 # ---------------------------------------------------------------
 # Misc Theme Settings
@@ -259,20 +263,31 @@ highlight_theme: normal
 mathjax:
   enable: true
   # per_page: true
-  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  #cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 
 # Swiftype Search API Key
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: c888fc327d14cee5f4eccbea8774ed93
 
 # Duoshuo ShortName
-duoshuo_shortname: metahacks
+# duoshuo_shortname: metahacks
 
 # Disqus
-disqus_shortname: hacksmeta
+# disqus_shortname: hacksmeta
+
+# Gitment
+ # Introduction: https://imsun.net/posts/gitment-introduction/
+gitment:
+  enable: true
+  githubID: kitianFresh
+  repo: kitianFresh.github.io
+  ClientID: 5b5290ca04338d74fc92
+  ClientSecret: 7791ae52cde870c5699b9802eb098c2e8e807a0c
+  lazy: false
 
 # Hypercomments
 #hypercomments_id:
@@ -305,7 +320,7 @@ disqus_shortname: hacksmeta
 
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-114706319-2
 
 # CNZZ count
 #cnzz_siteid:
@@ -375,6 +390,7 @@ busuanzi_count:
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
 baidu_push: false
+
 
 # Google Calendar
 # Share your recent schedule to others via calendar page

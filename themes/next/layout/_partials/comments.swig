@@ -28,6 +28,22 @@
       <div id="uyan_frame"></div>
     {% elseif theme.livere_uid %}
       <div id="lv-container" data-id="city" data-uid="{{ theme.livere_uid }}"></div>
+    {% elseif theme.gitment %}
+      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+      <script>
+        var gitment = new Gitment({
+          // 根据文章标题设置唯一评论id
+          id: '{{page.title}}',
+          owner: 'kitianFresh',
+          repo: 'kitianFresh.github.io',
+          oauth: {
+            client_id: '5b5290ca04338d74fc92',
+            client_secret: '7791ae52cde870c5699b9802eb098c2e8e807a0c',
+          },
+        })
+        gitment.render('comments')
+      </script>
     {% endif %}
   </div>
 {% endif %}
