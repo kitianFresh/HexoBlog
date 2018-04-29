@@ -4,7 +4,7 @@ title:
 date:
   2017-04-24
 categories:
-- python
+- Python
 tags:
 - python
 - functional programming

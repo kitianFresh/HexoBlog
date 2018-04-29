@@ -6,7 +6,7 @@ comments: false
 ---
 
 ## 简介
->中国科学技术大学在读研究僧，对互联网，人工智能感兴趣；
+>中国科学技术大学在读研究僧，关注bigdata, cloud-edge intelligence, distributed system, cloud computing；
 
 ## 联系我
 email: `echo Nzc3dGlhbmdvb2xlQGdtYWlsLmNvbQo= | base64  -d`

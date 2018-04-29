@@ -4,11 +4,11 @@ title:
 date:
   2017-04-11
 categories:
-- python
+- Python
 tags:
-- python
-- object
-- class
+- Python
+- Object
+- Class
 ---
 
 
