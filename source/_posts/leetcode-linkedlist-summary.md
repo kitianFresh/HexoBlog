@@ -18,7 +18,7 @@ tags:
 
 **链表在空间组织上是离散在内存之中**，而**数组是连续存在于内存之中**，因此**链表对内存的利用率较高，而且不会很苛刻，只要有足够一个节点的空间，就可以增加元素**，但是**数组对内存的要求比较苛刻，内存紧张的时候数组就会由于找不到连续内存而无法继续存储。**
 
-当然数组的好处也是有的，现代CPU对于内存中连续块可以进行cache,从而使得数组的处理在硬件上更加快速！因此对于内存不紧张的场景，开辟连续数组显然能够更大程度的利用 CPU 缓存体系。
+当然数组的好处也是有的，**现代CPU对于内存中连续块可以进行cache,从而使得数组的处理在硬件上更加快速！因此对于内存不紧张的场景，开辟连续数组显然能够更大程度的利用 CPU 缓存体系。**
 
 数组和链表都可以采用动态申请和静态申明的方式申请空间。你会惊讶链表也可以通过静态申明组织起来吗？
  - 数组的动态申请和静态申明：
@@ -247,7 +247,7 @@ static tDataNode head[] =
     }
 ```
 删除倒数第N个元素，难点就是链表不能倒着计数！因此这个题目首先就转换为查找链表的倒数第N-1个元素了！
-代码见[NodeRemove.java](./NodeRemove.java)
+代码见[NodeRemove.java](https://github.com/kitianFresh/LeetCode/tree/master/src/linkedlist/NodeRemove.java)
 
 ## 链表逆序递归思想
  - [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/?tab=Description)
@@ -376,7 +376,7 @@ static tDataNode head[] =
         return dumby.next;
     }
 ```
-以上代码可以参考[ReverseLinkList.java](./ReverseLinkList.java)
+以上代码可以参考[ReverseLinkList.java](https://github.com/kitianFresh/LeetCode/tree/master/src/linkedlist/ReverseLinkList.java)
 
 ## 链表重排,移位
  - [143. Reorder List](https://leetcode.com/problems/reorder-list/?tab=Description)
@@ -407,7 +407,7 @@ static tDataNode head[] =
 */
 //非递归实现，仔细观察发现，重排序的链表其实是由 1 2 3 4 5 和 10 9 8 7 6 两个链表交叉合并的结果，因此只要找到中点位置，然后将后半部分逆序，然后再交叉合并即可！
 ```
-以上问题的源代码见[ListRotate.java](./ListRotate.java) 和 [EvenOdd.java](./EvenOdd.java)
+以上问题的源代码见[ListRotate.java](https://github.com/kitianFresh/LeetCode/tree/master/src/linkedlist/ListRotate.java) 和 [EvenOdd.java](https://github.com/kitianFresh/LeetCode/tree/master/src/linkedlist/EvenOdd.java)
 
 ## 链表合并
  - [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/?tab=Description)
@@ -545,7 +545,7 @@ static tDataNode head[] =
 ## 基于链表数据结构排序
 
 ### 插入排序
-** 比较难写正确，虽然和数组的插入排序思想一样，由于不能从后往前比较，只能每次都从头开始比，很容易指错节点，为了防止从头比较的指针超过当前节点，采用提前判断的写法，即 p.next.val < pNode.val; 这样 p 就无法到达 pNode 了。 **
+**比较难写正确，虽然和数组的插入排序思想一样，由于不能从后往前比较，只能每次都从头开始比，很容易指错节点，为了防止从头比较的指针超过当前节点，采用提前判断的写法，即 p.next.val < pNode.val; 这样 p 就无法到达 pNode 了。**
 ```java
 	public ListNode insertionSortList(ListNode head) {
 		if (head == null || head.next == null)
