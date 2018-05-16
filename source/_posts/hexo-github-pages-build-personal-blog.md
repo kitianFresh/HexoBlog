@@ -130,6 +130,37 @@ deploy:
 {% asset_img image2.png image2 %}
 ```
 
+### 站点统计
+#### 字数统计和阅读时长
+`npm install hexo-wordcount@2 --save`. 在 `themes/next/_config.yml` 文件中配置
+
+```javascript
+post_wordcount:
+  item_text: true
+  wordcount: true
+  min2read: true
+``` 
+
+
+在 `themes/next/languages/zh-Hans.yml` 文件的 posts 下添加中文翻译
+
+```javascript
+post:
+  sticky: 置顶
+  posted: 发表于
+  modified: 更新于
+  in: 分类于
+  visitors: 阅读次数
+  min2read: 阅读时长
+  wordcount: 字数统计
+  read_more: 阅读全文
+  untitled: 未命名
+  toc_empty: 此文章未包含目录
+```
+
+### 访问量 LeanCloud
+ - [为NexT主题添加文章阅读量统计功能](https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud)
+
 # 配置DNS和绑定域名
 ## 概念
  * 网卡： 上网用的网卡，**每一个网卡都有唯一的一个物理硬件地址Media Access Control (MAC)，而且是全球唯一**。
@@ -230,3 +261,4 @@ deploy:
 参考
  - [Jekyll迁移到Hexo搭建个人博客](http://www.ezlippi.com/blog/2016/02/jekyll-to-hexo.html)
  - [Hexo-3-1-1-静态博客搭建指南](http://lovenight.github.io/2015/11/10/Hexo-3-1-1-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/)
+ - [hexo搭建个人博客--NexT主题优化](https://segmentfault.com/a/1190000013660164)

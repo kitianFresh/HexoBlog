@@ -27,6 +27,8 @@ post:
   modified: 更新于
   in: 分类于
   visitors: 阅读次数
+  min2read: 阅读时长
+  wordcount: 字数统计
   read_more: 阅读全文
   untitled: 未命名
   toc_empty: 此文章未包含目录
