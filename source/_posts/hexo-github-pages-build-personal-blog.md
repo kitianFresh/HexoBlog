@@ -262,3 +262,6 @@ post:
  - [Jekyll迁移到Hexo搭建个人博客](http://www.ezlippi.com/blog/2016/02/jekyll-to-hexo.html)
  - [Hexo-3-1-1-静态博客搭建指南](http://lovenight.github.io/2015/11/10/Hexo-3-1-1-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/)
  - [hexo搭建个人博客--NexT主题优化](https://segmentfault.com/a/1190000013660164)
+ - [HEXO+NEXT主题个性化配置](http://mashirosorata.vicp.io/HEXO-NEXT%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE.html)
+ - [hexo的SEO方法](https://hjptriplebee.github.io/hexo%E7%9A%84SEO%E6%96%B9%E6%B3%95.html/#more)
+ - [Hexo博客SEO与个性化的一些问题](https://www.zhaokangbing.com/posts/programming/2017-01-01-hexo-customizing-and-SEO/)
